@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Midna</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                background-color: #f4f4f9;
+            }
+            h1 {
+                color: #333;
+            }
+            .form-container input {
+                margin: 5px;
+            }
+        </style>
+    </head>
+    <body class="container">
+        <div class="d-flex my-4">
+            <h1 class="mb-0">Midna Servicios</h1>
+
+        </div>
+        <table id="servicesTable" class="table table-striped table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo de Servicio</th>
+                    <th>Descripción</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="form-container text-center">
+            <input type="date" id="fecha" class="form-control d-inline w-auto" placeholder="Fecha" />
+            <input type="text" id="tipo" class="form-control d-inline w-auto" placeholder="Tipo de Servicio" />
+            <input type="text" id="descripcion" class="form-control d-inline w-auto" placeholder="Descripción" />
+            <input type="number" id="costo" class="form-control d-inline w-auto" placeholder="Costo" />
+            <button class="btn btn-primary" onclick="addEntry()">Agregar</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            let editingRow = null;
+
+            function addEntry() {
+                const fecha = document.getElementById("fecha").value;
+                const tipo = document.getElementById("tipo").value;
+                const descripcion = document.getElementById("descripcion").value;
+                const costo = document.getElementById("costo").value;
+
+                if (!fecha || !tipo || !descripcion || !costo) {
+                    alert("Llenar por completo!");
+                    return;
+                }
+
+                if (editingRow) {
+                    editingRow.innerHTML = `
+                                                                            <td>${fecha}</td>
+                                                                            <td>${tipo}</td>
+                                                                            <td>${descripcion}</td>
+                                                                            <td>$${costo}</td>
+                                                                            <td>
+                                                                                            <button class="btn btn-warning btn-sm" onclick="editEntry(this)">Editar</button>
+                                                                                            <button class="btn btn-danger btn-sm" onclick="deleteEntry(this)">Eliminar</button>
+                                                                            </td>
+                                                            `;
+                    editingRow = null;
+                } else {
+                    const table = document
+                        .getElementById("servicesTable")
+                        .getElementsByTagName("tbody")[0];
+                    const newRow = table.insertRow();
+
+                    newRow.innerHTML = `
+                                                                            <td>${fecha}</td>
+                                                                            <td>${tipo}</td>
+                                                                            <td>${descripcion}</td>
+                                                                            <td>$${costo}</td>
+                                                                            <td>
+                                                                                            <button class="btn btn-warning btn-sm" onclick="editEntry(this)">Editar</button>
+                                                                                            <button class="btn btn-danger btn-sm" onclick="deleteEntry(this)">Eliminar</button>
+                                                                            </td>
+                                                            `;
+                }
+
+                document.getElementById("fecha").value = "";
+                document.getElementById("tipo").value = "";
+                document.getElementById("descripcion").value = "";
+                document.getElementById("costo").value = "";
+            }
+
+            function deleteEntry(button) {
+                const row = button.parentElement.parentElement;
+                row.remove();
+            }
+
+            function editEntry(button) {
+                const row = button.parentElement.parentElement;
+                const cells = row.getElementsByTagName("td");
+
+                const fecha = cells[0].innerText;
+                const tipo = cells[1].innerText;
+                const descripcion = cells[2].innerText;
+                const costo = cells[3].innerText.replace("$", "");
+
+                document.getElementById("fecha").value = fecha;
+                document.getElementById("tipo").value = tipo;
+                document.getElementById("descripcion").value = descripcion;
+                document.getElementById("costo").value = costo;
+
+                editingRow = row; 
+            }
+        </script>
+    </body>
+</html>
