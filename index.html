@@ -1,121 +1,292 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Midna</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-        <style>
-            body {
-                background-color: #f4f4f9;
-            }
-            h1 {
-                color: #333;
-            }
-            .form-container input {
-                margin: 5px;
-            }
-        </style>
-    </head>
-    <body class="container">
-        <div class="d-flex my-4">
-            <h1 class="mb-0">Midna Servicios</h1>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midna - Componentes Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Midna</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Buscar</button>
+                </form>
+            </div>
         </div>
-        <table id="servicesTable" class="table table-striped table-bordered">
-            <thead class="table-light">
-                <tr>
-                    <th>Fecha</th>
-                    <th>Tipo de Servicio</th>
-                    <th>Descripción</th>
-                    <th>Costo</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div class="form-container text-center">
-            <input type="date" id="fecha" class="form-control d-inline w-auto" placeholder="Fecha" />
-            <input type="text" id="tipo" class="form-control d-inline w-auto" placeholder="Tipo de Servicio" />
-            <input type="text" id="descripcion" class="form-control d-inline w-auto" placeholder="Descripción" />
-            <input type="number" id="costo" class="form-control d-inline w-auto" placeholder="Costo" />
-            <button class="btn btn-primary" onclick="addEntry()">Agregar</button>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            let editingRow = null;
+    </nav>
 
-            function addEntry() {
-                const fecha = document.getElementById("fecha").value;
-                const tipo = document.getElementById("tipo").value;
-                const descripcion = document.getElementById("descripcion").value;
-                const costo = document.getElementById("costo").value;
+    <div class="container pb-5">
 
-                if (!fecha || !tipo || !descripcion || !costo) {
-                    alert("Llenar por completo!");
-                    return;
-                }
+        <section class="mb-4">
+            <h6 class="text-muted text-uppercase fw-bold">2. Breadcrumb</h6>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-3 bg-white border rounded shadow-sm">
+                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="#">Biblioteca</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Servicios</li>
+                </ol>
+            </nav>
+        </section>
 
-                if (editingRow) {
-                    editingRow.innerHTML = `
-                                                                            <td>${fecha}</td>
-                                                                            <td>${tipo}</td>
-                                                                            <td>${descripcion}</td>
-                                                                            <td>$${costo}</td>
-                                                                            <td>
-                                                                                            <button class="btn btn-warning btn-sm" onclick="editEntry(this)">Editar</button>
-                                                                                            <button class="btn btn-danger btn-sm" onclick="deleteEntry(this)">Eliminar</button>
-                                                                            </td>
-                                                            `;
-                    editingRow = null;
-                } else {
-                    const table = document
-                        .getElementById("servicesTable")
-                        .getElementsByTagName("tbody")[0];
-                    const newRow = table.insertRow();
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">3. Carrusel</h6>
+            <div id="carouselExampleIndicators" class="carousel slide rounded overflow-hidden shadow" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active bg-secondary text-white py-5 px-4 text-center" style="min-height: 280px;">
+                        <div class="d-flex flex-column justify-content-center align-items-center h-100 mt-4">
+                            <h2>Primer Slide Informativo</h2>
+                            <p class="lead">Ejemplo de cabecera con llamada a la acción.</p>
+                            <a href="#" class="btn btn-primary">Registrarse hoy</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item bg-dark text-white py-5 px-4 text-center" style="min-height: 280px;">
+                        <div class="d-flex flex-column justify-content-center align-items-center h-100 mt-4">
+                            <h2>Segundo Slide</h2>
+                            <p class="lead">Contenido visual y responsivo para tus proyectos.</p>
+                            <a href="#" class="btn btn-success">Aprender más</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item bg-primary text-white py-5 px-4 text-center" style="min-height: 280px;">
+                        <div class="d-flex flex-column justify-content-center align-items-center h-100 mt-4">
+                            <h2>Tercer Slide</h2>
+                            <p class="lead">Galería totalmente interactiva.</p>
+                            <a href="#" class="btn btn-warning">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </section>
 
-                    newRow.innerHTML = `
-                                                                            <td>${fecha}</td>
-                                                                            <td>${tipo}</td>
-                                                                            <td>${descripcion}</td>
-                                                                            <td>$${costo}</td>
-                                                                            <td>
-                                                                                            <button class="btn btn-warning btn-sm" onclick="editEntry(this)">Editar</button>
-                                                                                            <button class="btn btn-danger btn-sm" onclick="deleteEntry(this)">Eliminar</button>
-                                                                            </td>
-                                                            `;
-                }
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">4. Sistema Grid</h6>
+            <div class="row g-3 text-center text-white">
+                <div class="col-md-4">
+                    <div class="p-3 bg-success rounded shadow-sm">
+                        <span class="d-block text-white-50">Nombre</span>
+                        <h4 class="mb-0">Garfield</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-secondary rounded shadow-sm">
+                        <span class="d-block text-white-50">Edad</span>
+                        <h4 class="mb-0">12 meses</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-danger rounded shadow-sm">
+                        <span class="d-block text-white-50">Criador</span>
+                        <h4 class="mb-0">Juan</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                document.getElementById("fecha").value = "";
-                document.getElementById("tipo").value = "";
-                document.getElementById("descripcion").value = "";
-                document.getElementById("costo").value = "";
-            }
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">5. Dropdown</h6>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Seleccionar Lenguaje
+                </button>
+                <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">HTML5</a></li>
+                    <li><a class="dropdown-item" href="#">CSS3</a></li>
+                    <li><a class="dropdown-item" href="#">JavaScript</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">Reiniciar selección</a></li>
+                </ul>
+            </div>
+        </section>
 
-            function deleteEntry(button) {
-                const row = button.parentElement.parentElement;
-                row.remove();
-            }
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">6. Botones (Variantes & Estados)</h6>
+            <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-secondary">Secondary</button>
+                <button type="button" class="btn btn-success">Success</button>
+                <button type="button" class="btn btn-danger">Danger</button>
+                <button type="button" class="btn btn-warning">Warning</button>
+                <button type="button" class="btn btn-info text-white">Info</button>
+                <button type="button" class="btn btn-dark">Dark</button>
+                <button type="button" class="btn btn-outline-primary">Outline</button>
+            </div>
+        </section>
 
-            function editEntry(button) {
-                const row = button.parentElement.parentElement;
-                const cells = row.getElementsByTagName("td");
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">7. List Group</h6>
+            <div class="list-group shadow-sm" style="max-width: 480px;">
+                <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" checked>
+                    <span>
+                        <strong>Revisión de componentes</strong>
+                        <small class="d-block text-muted">Asegurar que todas las etiquetas HTML cierren debidamente.</small>
+                    </span>
+                </label>
+                <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="checkbox">
+                    <span>
+                        <strong>Implementación de modales</strong>
+                        <small class="d-block text-muted">Verificar enlaces data-bs-target y data-bs-dismiss.</small>
+                    </span>
+                </label>
+            </div>
+        </section>
 
-                const fecha = cells[0].innerText;
-                const tipo = cells[1].innerText;
-                const descripcion = cells[2].innerText;
-                const costo = cells[3].innerText.replace("$", "");
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">8. Album / Cards</h6>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80" class="card-img-top" alt="Gatito 1" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Gato Naranja</h5>
+                            <p class="card-text text-muted">Ejemplo de tarjeta de adopción con descripción y acciones integradas.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&q=80" class="card-img-top" alt="Gatito 2" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Gato Atigrado</h5>
+                            <p class="card-text text-muted">Listo para adopción responsable con carnet de vacunas completo.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                </div>
+                                <small class="text-muted">15 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=600&q=80" class="card-img-top" alt="Gatito 3" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Gato Siamés</h5>
+                            <p class="card-text text-muted">Muy dócil y acostumbrado a convivir en espacios de interior.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                                </div>
+                                <small class="text-muted">1 hora</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                document.getElementById("fecha").value = fecha;
-                document.getElementById("tipo").value = tipo;
-                document.getElementById("descripcion").value = descripcion;
-                document.getElementById("costo").value = costo;
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">9. Dashboard (Tabla de Reportes)</h6>
+            <div class="table-responsive bg-white rounded shadow-sm p-3">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID Mascota</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Responsable</th>
+                            <th scope="col" class="text-end">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>CAT-001</td>
+                            <td><span class="badge bg-success">Adoptado</span></td>
+                            <td>Juan</td>
+                            <td class="text-end"><button class="btn btn-sm btn-outline-primary">Detalle</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>CAT-002</td>
+                            <td><span class="badge bg-warning text-dark">En revisión</span></td>
+                            <td>Leticia</td>
+                            <td class="text-end"><button class="btn btn-sm btn-outline-primary">Detalle</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>CAT-003</td>
+                            <td><span class="badge bg-secondary">Disponible</span></td>
+                            <td>Refugio Central</td>
+                            <td class="text-end"><button class="btn btn-sm btn-outline-primary">Detalle</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-                editingRow = row; 
-            }
-        </script>
-    </body>
+        <!-- 10. MODAL -->
+        <section class="mb-5">
+            <h6 class="text-muted text-uppercase fw-bold">10. Modal (Ventana Emergente)</h6>
+            <button type="button" class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Abrir Modal de Noticia
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¡Nueva Noticia!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            La jornada de adopción ha comenzado con éxito en todas las sucursales.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
